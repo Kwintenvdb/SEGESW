@@ -28,7 +28,7 @@ public class ForceWave : MonoBehaviour {
 				{
 					Vector3 forceDir = (col.transform.position - transform.position).normalized;
 					float force = 1200f;
-					col.rigidbody.AddForce(forceDir * force);
+					col.GetComponent<Rigidbody>().AddForce(forceDir * force);
 				}
 			}
 			

@@ -81,7 +81,7 @@ public class Wireframe : MonoBehaviour {
 
 	
 	void OnRenderObject () {
-		gameObject.renderer.enabled=render_mesh_normaly;
+		gameObject.GetComponent<Renderer>().enabled=render_mesh_normaly;
 		if (lines == null || lines.Length < lineWidth) {
 			print("No lines");
 		} 

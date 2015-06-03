@@ -34,7 +34,7 @@ public class Drone : MonoBehaviour {
 			if(Time2 >= 15f)
 			{
 				var list = transform.parent.GetComponent<DronesRing>().DroneList;
-				list.Remove(gameObject.collider);
+				list.Remove(gameObject.GetComponent<Collider>());
 				transform.parent.GetComponent<DronesRing>().CalcPositions();
 				Destroy(gameObject);
 			}

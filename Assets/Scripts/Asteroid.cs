@@ -20,10 +20,10 @@ public class Asteroid : MonoBehaviour {
 		GameObject tmpGameObj = GameObject.FindWithTag("Player");
 		if(tmpGameObj) SpaceShipObj = tmpGameObj.GetComponent<SpaceShip>();
 		//else Debug.Log("- Asteroid.cs - SpaceShipObj is empty!");
-		Health = 10 * rigidbody.mass;
+		Health = 10 * GetComponent<Rigidbody>().mass;
 			
-		rigidbody.AddForce(transform.forward * StartForce);
-		rigidbody.AddTorque(Vector3.one * RotSpeed);
+		GetComponent<Rigidbody>().AddForce(transform.forward * StartForce);
+		GetComponent<Rigidbody>().AddTorque(Vector3.one * RotSpeed);
 	}
 	
 	// ----------
@@ -32,7 +32,7 @@ public class Asteroid : MonoBehaviour {
 		if(SpaceShipObj) {
 			float distance	= Vector3.Distance(SpaceShipObj.transform.position, transform.position) / 300;
 			Vector3 force	= (SpaceShipObj.transform.position - transform.position) * distance;
-			rigidbody.AddForce(force);
+			GetComponent<Rigidbody>().AddForce(force);
 		}
 	}
 	

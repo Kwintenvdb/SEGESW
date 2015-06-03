@@ -15,8 +15,8 @@ public class AsteroidExploding : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 	
-		rigidbody.AddForce(transform.forward * StartForce);
-		rigidbody.AddTorque(Vector3.one * RotSpeed);
+		GetComponent<Rigidbody>().AddForce(transform.forward * StartForce);
+		GetComponent<Rigidbody>().AddTorque(Vector3.one * RotSpeed);
 	}
 	
 	// Update is called once per frame
@@ -33,7 +33,7 @@ public class AsteroidExploding : MonoBehaviour {
 			}
 			foreach( Transform trans in GetComponentsInChildren<Transform>())
 			{
-				trans.rigidbody.isKinematic = false;
+				trans.GetComponent<Rigidbody>().isKinematic = false;
 				trans.parent = null;
 				foreach(MeshCollider mc in trans.GetComponentsInChildren<MeshCollider>())
 				{

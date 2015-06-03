@@ -16,8 +16,8 @@ public class Debris : MonoBehaviour {
 		else KillTime = Random.Range(25f,35f);
 		
 		if(startDebris) {
-			transform.rigidbody.AddForce(transform.forward * Random.Range(35f,100f));
-			rigidbody.AddTorque(Vector3.one * 10f);
+			transform.GetComponent<Rigidbody>().AddForce(transform.forward * Random.Range(35f,100f));
+			GetComponent<Rigidbody>().AddTorque(Vector3.one * 10f);
 		}
 	}
 	

@@ -23,7 +23,7 @@ public class DebrisRing : MonoBehaviour {
 			foreach(Collider collider in Physics.OverlapSphere(transform.position, 10)) {
 				if(collider.CompareTag("Debris")) {
 					collider.transform.parent = transform;
-					Destroy(collider.rigidbody);
+					Destroy(collider.GetComponent<Rigidbody>());
 					collider.tag = "DebrisInOrbit";
 					collider.gameObject.layer = 9;
 					collider.GetComponent<Debris>().StopTimer(true);
@@ -61,11 +61,11 @@ public class DebrisRing : MonoBehaviour {
 	
 	public void ShockWave() {
 		
-		Vector3 shipVel = transform.parent.rigidbody.velocity;
+		Vector3 shipVel = transform.parent.GetComponent<Rigidbody>().velocity;
 		foreach(Collider debris in DebrisList)
 		{	
 			debris.gameObject.AddComponent<Rigidbody>();
-			debris.rigidbody.useGravity = false;
+			debris.GetComponent<Rigidbody>().useGravity = false;
 			debris.transform.parent = null;
 			
 			debris.GetComponent<Wireframe2>().lineColor = new Color(255,0,0);			
@@ -76,7 +76,7 @@ public class DebrisRing : MonoBehaviour {
 			Vector3 forceDir = (debris.transform.position - transform.position).normalized;
 			forceDir.y = 0;
 			float forceStrength = 1750f;
-			debris.rigidbody.AddForce(forceDir * forceStrength + shipVel * 40f);			
+			debris.GetComponent<Rigidbody>().AddForce(forceDir * forceStrength + shipVel * 40f);			
 		}
 		DebrisList.Clear();
 	}

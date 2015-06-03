@@ -21,14 +21,14 @@ public class SpaceShip : MonoBehaviour {
 	void FixedUpdate () {
 		if(Input.GetButton("Vertical")) { 
 			if(Input.GetAxis("Vertical") > 0) {
-				rigidbody.AddForce(transform.forward * (EngineForce * Time.deltaTime));
+				GetComponent<Rigidbody>().AddForce(transform.forward * (EngineForce * Time.deltaTime));
 				
-				if(rigidbody.velocity.magnitude > MaxVel)
-					rigidbody.velocity = rigidbody.velocity.normalized * MaxVel;
+				if(GetComponent<Rigidbody>().velocity.magnitude > MaxVel)
+					GetComponent<Rigidbody>().velocity = GetComponent<Rigidbody>().velocity.normalized * MaxVel;
 			}
-			else rigidbody.velocity = rigidbody.velocity * 0.9f;
+			else GetComponent<Rigidbody>().velocity = GetComponent<Rigidbody>().velocity * 0.9f;
 			
-			rigidbody.angularVelocity = Vector3.zero;
+			GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
 			
 			// sound
 			
@@ -37,14 +37,14 @@ public class SpaceShip : MonoBehaviour {
 		else Sound.Stop();
            
 		if(Input.GetButton("Horizontal")) {
-			rigidbody.transform.eulerAngles += new Vector3(0,(RotSpeed * Time.deltaTime) * Input.GetAxis("Horizontal"),0);
-			rigidbody.angularVelocity = Vector3.zero;
+			GetComponent<Rigidbody>().transform.eulerAngles += new Vector3(0,(RotSpeed * Time.deltaTime) * Input.GetAxis("Horizontal"),0);
+			GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
 		}
 		
-		Vector3 posFixed = rigidbody.transform.position;
+		Vector3 posFixed = GetComponent<Rigidbody>().transform.position;
 		posFixed.y = 0f;
 		
-		rigidbody.transform.position = posFixed;
+		GetComponent<Rigidbody>().transform.position = posFixed;
 		
 		Smoke.transform.position = transform.position;
 		

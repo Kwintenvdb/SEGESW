@@ -20,7 +20,7 @@ public class DronesRing : MonoBehaviour {
 			foreach(Collider collider in Physics.OverlapSphere(transform.position, 12)) {
 				if(collider.CompareTag("DronePickup")) {
 					collider.transform.parent = transform;
-					Destroy(collider.rigidbody);
+					Destroy(collider.GetComponent<Rigidbody>());
 					collider.tag = "Drone";
 					collider.GetComponent<BoxCollider>().enabled = false;
 					

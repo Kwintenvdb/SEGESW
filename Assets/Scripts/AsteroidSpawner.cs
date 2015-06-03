@@ -49,8 +49,8 @@ public class AsteroidSpawner : MonoBehaviour {
 			transform.position = pos;
 			
 			AsteroidExploding asteroidObj	= Asteroids[Random.Range(0, Asteroids.Count)].GetComponent<AsteroidExploding>();
-			asteroidObj.StartForce	= Random.Range(MinStartForce, MaxStartForce) * asteroidObj.rigidbody.mass;
-			asteroidObj.RotSpeed	= Random.Range(MinRotSpeed, MaxRotSpeed) * asteroidObj.rigidbody.mass;
+			asteroidObj.StartForce	= Random.Range(MinStartForce, MaxStartForce) * asteroidObj.GetComponent<Rigidbody>().mass;
+			asteroidObj.RotSpeed	= Random.Range(MinRotSpeed, MaxRotSpeed) * asteroidObj.GetComponent<Rigidbody>().mass;
 			
 			AllAsteroids.Add(Instantiate(asteroidObj, transform.position, Quaternion.AngleAxis(Random.Range(0, 360), Vector3.up))
 					as GameObject);

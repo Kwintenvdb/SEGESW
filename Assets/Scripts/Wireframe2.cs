@@ -404,7 +404,7 @@ public class Wireframe2 : MonoBehaviour {
 
     void OnRenderObject () {
 
-        gameObject.renderer.enabled=render_mesh;
+        gameObject.GetComponent<Renderer>().enabled=render_mesh;
 
         if (size >  3){
 

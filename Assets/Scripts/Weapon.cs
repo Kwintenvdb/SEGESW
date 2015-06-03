@@ -29,10 +29,10 @@ public class Weapon : MonoBehaviour {
 				transform.DetachChildren();
 
 				Bullet.gameObject.AddComponent<Rigidbody>();
-				Bullet.rigidbody.useGravity = false;
-				Bullet.rigidbody.constraints = RigidbodyConstraints.FreezePositionY;
-				Bullet.rigidbody.velocity = transform.parent.rigidbody.velocity;
-				Bullet.rigidbody.AddForce(transform.forward.normalized * StartForce);
+				Bullet.GetComponent<Rigidbody>().useGravity = false;
+				Bullet.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionY;
+				Bullet.GetComponent<Rigidbody>().velocity = transform.parent.GetComponent<Rigidbody>().velocity;
+				Bullet.GetComponent<Rigidbody>().AddForce(transform.forward.normalized * StartForce);
 				
 				Bullet.tag = "Bullet";
 				Bullet.gameObject.layer = 10;

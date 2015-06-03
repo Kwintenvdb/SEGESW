@@ -16,11 +16,11 @@ public class ShieldPU : MonoBehaviour {
 			bool ColIsSpaceShip = false;
 			int Objects = 0;
 			foreach(Collider col in Physics.OverlapSphere(ColObj.transform.position, 12)) {
-				if(col.rigidbody) {
+				if(col.GetComponent<Rigidbody>()) {
 					if(col.CompareTag("Debris") || col.CompareTag("Asteroid") || col.CompareTag("Bullet") || col.CompareTag("Enemy") || (ColIsSpaceShip = col.CompareTag("SpaceShip"))) {
 						if(ColIsSpaceShip) if(ColObj.gameObject == col.gameObject) continue;
 						Vector3 dir = (col.transform.position - ColObj.transform.position).normalized;
-						col.rigidbody.AddForce(dir * Force);
+						col.GetComponent<Rigidbody>().AddForce(dir * Force);
 						++Objects;
 					}
 				}
@@ -38,8 +38,8 @@ public class ShieldPU : MonoBehaviour {
 	void OnCollisionEnter(Collision colObj) {
 		if (colObj.gameObject.tag == "Player") {
 			Debug.Log("hit");
-			collider.enabled = false;
-			renderer.enabled = false;
+			GetComponent<Collider>().enabled = false;
+			GetComponent<Renderer>().enabled = false;
 			ColObj = colObj;
 		}
 	}
